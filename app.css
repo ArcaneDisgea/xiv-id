@@ -1,0 +1,48 @@
+html body {
+    background-color: #303030;
+}
+
+.navbar {
+    background-color: #282828;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.table {
+    color: #fff;
+    border-radius: 3px;
+    background-color: #282828;
+}
+
+td > a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+#settings {
+    color: #fff;
+	margin: 1rem auto;
+	text-align: center;
+	background-color: #282828;
+	border-radius: 3px;
+	width: 20rem;
+	padding: 1rem;
+}
+
+#settings > ul {
+    list-style-type: none;
+}
+
+#settings > ul > li {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#settings > ul > li > h5 {
+	padding: 0 1rem 0 0;
+}
+
+.hidden {
+	display: none;
+}
