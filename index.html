@@ -1,62 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta property="og:title" content="XIV-ID" />
-    <meta property="og:url" content="https://arcanedisgea.github.io/xiv-id/" />
-    <meta property="og:image" content="https://xivapi.com/i/000000/000046.png" />
-    <meta property="og:description" content="A super simple shitty site to easy look-up item ids because it's too hard to run godbert apparently." />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="app.css" />
-    <link rel="shortcut icon" href="https://xivapi.com/i/000000/000046.png" type="image/x-icon" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link href="https://fonts.googleapis.com/css?family=Mada:400,500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/vue-xivtooltips/dist/vue-xivtooltips.min.css" />
-    <title>XIV ID</title>
-  </head>
-  <body>
-    <header class="container mb-4">
-      <div class="navbar">
-        <a href="/xiv/xiv-id/"  class="navbar-brand">
-          <img src="https://xivapi.com/i/000000/000046.png" id="logo"/>
-        </a>
-        <h1>XIV-ID</h1>
-        <input class="form-control col-4" type="text" placeholder="Search" id="searchbar">
-        <select class="browser-default custom-select col-4" id="filters">
-          <option value="Action">Actions</option>
-          <option value="Item">Items</option>
-          <option value="Minion">Minion</option>
-          <option value="Mount">Mount</option>
-          <option value="Status">Status</option>
-          <option value="Trait">Trait</option>
-        </select>
-        <button type="button" class="btn btn-primary" id="searchbtn" onclick="searchAction()">Search</button>
-      </button>
-	  <button type="button" class="btn btn-secondary" onclick="toggleSettings()"><i class="fas fa-cog"></i></button>
-      </div>
-    </header>
-    <!-- <canvas id="gnashing-fang-hr1" width="90" height="90"></canvas> -->
-	<div id="settings" class="hidden">
-		<h2>Settings</h2>
-		<ul>
-			<li>
-				<h5>Exclude PVP Actions</h5>
-				<input type="checkbox" name="excludePVP" id="excludePVP">
-			</li>
-		</ul>
-		<div class="saveclose">
-			<button type="button" class="btn btn-primary" onclick="saveSettings()">Save</button>
-			<button type="button" class="btn btn-primary" onclick="toggleSettings()">Close</button>
-		</div>
-	</div>
-    <table class="table table-dark mb-4 container" id="content">
-    </table>
-    <script src="rewrite.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta property="og:title" content="XIV-ID" />
+        <meta property="og:url" content="https://arcanedisgea.github.io/xiv-id/" />
+        <meta property="og:image" content="public/img/000046_hr1.png" />
+        <meta property="og:description" content="Simple ID Lookup for FFXIV" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+        <link rel="stylesheet" href="public/css/style.css" />
+        <link rel="shortcut icon" href="public/img/000046_hr1.png" type="image/x-icon" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css?family=Mada:400,500&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&display=swap" rel="stylesheet" />
+        <title>XIV ID</title>
+    </head>
+    <body>
+        <header class="container mb-4">
+            <div class="navbar">
+                <a href="/xiv/xiv-id/" class="navbar-brand">
+                    <img src="https://xivapi.com/i/000000/000046.png" id="logo" />
+                </a>
+                <h1>XIV-ID</h1>
+                <input class="form-control col-4" type="text" placeholder="Search" id="searchbar" />
+                <select class="browser-default custom-select col-4" id="filters">
+                    <option value="Action">Actions</option>
+                    <option value="Item">Items</option>
+                    <option value="Companion">Minion</option>
+                    <option value="Mount">Mount</option>
+                    <option value="Status">Status</option>
+                    <option value="Trait">Trait</option>
+                </select>
+                <button type="button" class="btn btn-primary" id="searchbtn">Search</button>
+                <button type="button" class="btn btn-secondary" id="settings-toggle"><i class="fas fa-cog"></i></button>
+            </div>
+        </header>
+        <!-- <canvas id="gnashing-fang-hr1" width="90" height="90"></canvas> -->
+        <div id="settings" class="hidden">
+            <h2>Settings</h2>
+            <ul>
+                <li>
+                    <h5>Exclude PVP Actions</h5>
+                    <input type="checkbox" name="excludePVP" id="excludePVP" />
+                </li>
+            </ul>
+            <div class="saveclose">
+                <button type="button" class="btn btn-primary" id="save-settings">Save</button>
+                <button type="button" class="btn btn-primary" id="close-settings">Close</button>
+            </div>
+        </div>
+        <table class="table table-dark mb-4 container" id="content"></table>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script type="module" src="public/js/app.js"></script>
+    </body>
 </html>
