@@ -1,0 +1,85 @@
+---
+
+---
+
+<div class="header">
+    <div class="branding">
+        <img src="/favicon.png" alt="A gold magnifying glass on a red background." class="logo" />
+        <h1>XIV-ID</h1>
+    </div>
+    <form action="" class="form">
+        <input type="text" name="search" id="searchBar" class="search-input" placeholder="Search" />
+        <select name="filters" id="filterSelect" class="filter-select">
+            <option value="Action">Actions</option>
+            <option value="Item">Items</option>
+            <option value="Companion">Minion</option>
+            <option value="Mount">Mount</option>
+            <option value="Status">Status</option>
+            <option value="Trait">Trait</option>
+        </select>
+        <button type="submit" id="submitSearch" class="submit-search">Submit</button>
+    </form>
+</div>
+
+<style>
+    div.header {
+        display: flex;
+        flex-direction: row;
+        background-color: #282828;
+        color: #e8e8e8e8;
+        padding: 1rem;
+        margin: 1rem;
+        border-radius: 5px;
+        align-items: center;
+        justify-content: space-between;
+        height: auto;
+    }
+
+    input.search-input {
+        padding: 0.2rem;
+        border-radius: 5px;
+    }
+
+    select.filter-select {
+        padding: 0.2rem;
+        border-radius: 5px;
+    }
+
+    button.submit-search {
+        padding: 0.3rem;
+        border-radius: 5px;
+    }
+
+    img.logo {
+        width: 3rem;
+        height: auto;
+        padding: 1rem;
+    }
+
+    div.branding {
+        display: flex;
+        flex-direction: row;
+    }
+
+    div.branding > h1 {
+        padding: 0 1rem 0 0;
+    }
+
+    div.header > form.form {
+        justify-self: flex-start;
+    }
+
+    @media (width <= 600px) {
+        div.header {
+            flex-direction: column;
+        }
+
+        div.header > form {
+            display: flex;
+            flex-direction: column;
+        }
+        div.header > form > input, div.header > form > select, div.header > form > button {
+            margin: 0.2rem;
+        }
+    }
+</style>
