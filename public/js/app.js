@@ -16,23 +16,23 @@ async function GetData(Index, Field, SearchString) {
     let newResults;
     switch (Index) {
         case "Action":
-            response = await fetch(`https://beta.xivapi.com/api/1/search?sheets=${Index}&query=${Field}~"${SearchString}"&fields=Name,Icon,IsPvP,CooldownGroup,AdditionalCooldownGroup`);
+            response = await fetch(`https://v2.xivapi.com/api/search?sheets=${Index}&query=${Field}~"${SearchString}"&fields=Name,Icon,IsPvP,CooldownGroup,AdditionalCooldownGroup`);
             results = await response.json();
             return results;
         case "Trait":
-            response = await fetch(`https://beta.xivapi.com/api/1/search?sheets=${Index}&query=${Field}~"${SearchString}"&fields=Name,Icon`);
+            response = await fetch(`https://v2.xivapi.com/api/search?sheets=${Index}&query=${Field}~"${SearchString}"&fields=Name,Icon`);
             results = await response.json();
             return results;
         case "Status":
-            response = await fetch(`https://beta.xivapi.com/api/1/search?sheets=${Index}&query=${Field}~"${SearchString}"&fields=Name,Icon`);
+            response = await fetch(`https://v2.xivapi.com/api/search?sheets=${Index}&query=${Field}~"${SearchString}"&fields=Name,Icon`);
             results = await response.json();
             return results;
         case "Item":
-            response = await fetch(`https://beta.xivapi.com/api/1/search?sheets=${Index}&query=${Field}~"${SearchString}"&fields=Name,Icon`);
+            response = await fetch(`https://v2.xivapi.com/api/search?sheets=${Index}&query=${Field}~"${SearchString}"&fields=Name,Icon`);
             results = await response.json();
             return results;
         case "Mount":
-            response = await fetch(`https://beta.xivapi.com/api/1/search?sheets=${Index}&query=${Field}~"${SearchString}"&fields=Singular,Icon`);
+            response = await fetch(`https://v2.xivapi.com/api/search?sheets=${Index}&query=${Field}~"${SearchString}"&fields=Singular,Icon`);
             results = await response.json();
             newResults = [];
             for (const mount of results.results) {
@@ -43,7 +43,7 @@ async function GetData(Index, Field, SearchString) {
             results.results = newResults;
             return results;
         case "Companion":
-            response = await fetch(`https://beta.xivapi.com/api/1/search?sheets=${Index}&query=${Field}~"${SearchString}"&fields=Singular,Icon`);
+            response = await fetch(`https://v2.xivapi.com/api/search?sheets=${Index}&query=${Field}~"${SearchString}"&fields=Singular,Icon`);
             results = await response.json();
             newResults = [];
             for (const minion of results.results) {
@@ -57,7 +57,7 @@ async function GetData(Index, Field, SearchString) {
 }
 
 async function GetExtraData(Sheet, RowID) {
-    let response = await fetch(`https://beta.xivapi.com/api/1/sheet/${Sheet}/${RowID}`);
+    let response = await fetch(`https://v2.xivapi.com/api/sheet/${Sheet}/${RowID}`);
     let results = await response.json();
     return results;
 }
@@ -98,7 +98,7 @@ function GetJournalIcon(Value, Index) {
 }
 
 function GetIcon(Path) {
-    return `https://beta.xivapi.com/api/1/asset/${Path}?format=png`;
+    return `https://v2.xivapi.com/api/asset/${Path}?format=png`;
 }
 
 function GetInputs() {
@@ -236,7 +236,7 @@ async function makeTable(Index, Data) {
             iconhd = createNode("img");
 
         // idlink.href = `https://xivapi.com/action/${action.ID}`;
-        idlink.href = `https://beta.xivapi.com/api/1/sheet/${Index}/${entry.row_id}`;
+        idlink.href = `https://v2.xivapi.com/api/sheet/${Index}/${entry.row_id}`;
         idlink.innerHTML = entry.row_id;
         name.innerHTML = entry.fields.Name;
         icon.src = GetIcon(entry.fields.Icon.path);
