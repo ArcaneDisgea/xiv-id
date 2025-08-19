@@ -6,7 +6,8 @@ const Headers = {
 	Mount: ["ID", "Name", "Icon", "HR Icon", "Journal Icon", "Journal Icon HR"],
 	Companion: ["ID", "Name", "Icon", "HR Icon", "Journal Icon", "Journal Icon HR"],
 	Map: ["ID", "Name", "Icon"],
-	Emote: ["ID", "Name", "Icon", "HR Icon"]
+	Emote: ["ID", "Name", "Icon", "HR Icon"],
+	OnlineStatus: ["ID", "Name", "Icon", "HR Icon"]
 };
 
 const ls = window.localStorage;
@@ -60,6 +61,10 @@ async function GetData(Index, Field, SearchString) {
 			results = await response.json();
 			return results;
 		case "Emote":
+			response = await fetch(`https://v2.xivapi.com/api/search?sheets=${Index}&query=${Field}~"${SearchString}"&fields=Name,Icon`);
+			results = await response.json();
+			return results;
+		case "OnlineStatus":
 			response = await fetch(`https://v2.xivapi.com/api/search?sheets=${Index}&query=${Field}~"${SearchString}"&fields=Name,Icon`);
 			results = await response.json();
 			return results;
@@ -363,6 +368,10 @@ async function searchAction() {
 			await makeTable(Index, data);
 			break;
 		case "Emote":
+			data = await GetData(Index, "Name", SearchString);
+			await makeTable(Index, data);
+			break;
+		case "OnlineStatus":
 			data = await GetData(Index, "Name", SearchString);
 			await makeTable(Index, data);
 			break;
