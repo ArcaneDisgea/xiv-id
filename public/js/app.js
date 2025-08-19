@@ -6,6 +6,7 @@ const Headers = {
 	Mount: ["ID", "Name", "Icon", "HR Icon", "Journal Icon", "Journal Icon HR"],
 	Companion: ["ID", "Name", "Icon", "HR Icon", "Journal Icon", "Journal Icon HR"],
 	Map: ["ID", "Name", "Icon"],
+	Emote: ["ID", "Name", "Icon", "HR Icon"]
 };
 
 const ls = window.localStorage;
@@ -56,6 +57,10 @@ async function GetData(Index, Field, SearchString) {
 			return results;
 		case "Map":
 			response = await fetch(`https://v2.xivapi.com/api/search?sheets=${Index}&query=${Field}~"${SearchString}"&fields=PlaceName.Name,Id`);
+			results = await response.json();
+			return results;
+		case "Emote":
+			response = await fetch(`https://v2.xivapi.com/api/search?sheets=${Index}&query=${Field}~"${SearchString}"&fields=Name,Icon`);
 			results = await response.json();
 			return results;
 	}
@@ -355,6 +360,10 @@ async function searchAction() {
 		case "Map":
 			data = await GetData(Index, "PlaceName.Name", SearchString);
 			console.log(data);
+			await makeTable(Index, data);
+			break;
+		case "Emote":
+			data = await GetData(Index, "Name", SearchString);
 			await makeTable(Index, data);
 			break;
 	}
