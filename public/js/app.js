@@ -1,7 +1,7 @@
 const Headers = {
 	Action: ["ID", "Name", "Icon", "HR Icon", "CooldownGroup", "AdditionalCooldownGroup"],
 	Trait: ["ID", "Name", "Icon", "HR Icon"],
-	Status: ["ID", "Name", "Icon", "HR Icon"],
+	Status: ["ID", "Name", "Icon", "HR Icon", "MaxStacks"],
 	Item: ["ID", "Name", "Icon", "HR Icon"],
 	Mount: ["ID", "Name", "Icon", "HR Icon", "Journal Icon", "Journal Icon HR"],
 	Companion: ["ID", "Name", "Icon", "HR Icon", "Journal Icon", "Journal Icon HR"],
@@ -27,7 +27,7 @@ async function GetData(Index, Field, SearchString) {
 			results = await response.json();
 			return results;
 		case "Status":
-			response = await fetch(`https://v2.xivapi.com/api/search?sheets=${Index}&query=${Field}~"${SearchString}"&fields=Name,Icon`);
+			response = await fetch(`https://v2.xivapi.com/api/search?sheets=${Index}&query=${Field}~"${SearchString}"&fields=Name,Icon,MaxStacks`);
 			results = await response.json();
 			return results;
 		case "Item":
@@ -282,6 +282,29 @@ async function makeTable(Index, Data) {
 			case "Trait":
 				break;
 			case "Status":
+				let stacks = createNode("td");
+				stacks.innerHTML = entry.fields.MaxStacks;
+				append(tr, stacks);
+				if (entry.fields.MaxStacks > 1) {
+					for (let i = 1; i < entry.fields.MaxStacks; i++) {
+						let sr = createNode("tr");
+						Array.from({ length: 2 }, () => append(sr, createNode("td")));
+
+						let path = entry.fields.Icon.path.replace(/\d+(?=\.tex$)/, idx => Number(idx) + i);
+
+						let sitd = createNode("td"), si = createNode("img");
+						si.src = GetIcon(path);
+						append(sitd, si);
+						let sihdtd = createNode("td"), sihd = createNode("img");
+						sihd.src = GetIcon(path.replace(".tex", "_hr1.tex"));
+						append(sihdtd, sihd);
+
+						append(sr, sitd);
+						append(sr, sihdtd);
+						append(sr, createNode("td"));
+						append(tbody, sr);
+					}
+				}
 				break;
 			case "Item":
 				break;
